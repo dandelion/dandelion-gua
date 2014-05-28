@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <artifactId>oss-parent</artifactId>
+      <groupId>org.sonatype.oss</groupId>
+      <version>7</version>
+   </parent>
+
+   <groupId>com.github.dandelion</groupId>
+   <artifactId>dandelion-gua</artifactId>
+   <version>0.1.0-SNAPSHOT</version>
+
+   <packaging>pom</packaging>
+   <name>Dandelion Google Universal Analytics</name>
+   <description>
+      Dandelion module that helps you to manage your web analytics from Google Universal Analytics platform.
+   </description>
+   <url>http://dandelion.github.io/gua</url>
+   <inceptionYear>2014</inceptionYear>
+   <organization>
+      <name>Dandelion Project</name>
+      <url>http://dandelion.github.io/</url>
+   </organization>
+
+   <modules>
+      <module>gua-core</module>
+      <module>gua-jsp</module>
+      <module>gua-thymeleaf</module>
+      <module>gua-extras</module>
+   </modules>
+
+   <licenses>
+      <license>
+         <distribution>repo</distribution>
+         <name>BSD 3-Clause</name>
+         <url>http://opensource.org/licenses/BSD-3-Clause</url>
+      </license>
+   </licenses>
+
+   <properties>
+      <!-- Configuration -->
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+      <!-- Maven plugins -->
+      <maven.compiler.version>2.3.2</maven.compiler.version>
+      <maven.javadoc.version>2.8.1</maven.javadoc.version>
+      <maven.project-report-info.version>2.5.1</maven.project-report-info.version>
+      <maven.release.version>2.3.2</maven.release.version>
+      <maven.site.version>3.1</maven.site.version>
+      <maven.source.version>2.2</maven.source.version>
+      <maven.surefire.version>2.13</maven.surefire.version>
+      <maven.gpg.version>1.4</maven.gpg.version>
+   </properties>
+
+
+   <build>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-surefire-plugin</artifactId>
+               <version>${maven.surefire.version}</version>
+               <configuration>
+                  <useSystemClassLoader>false</useSystemClassLoader>
+               </configuration>
+            </plugin>
+         </plugins>
+      </pluginManagement>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.version}</version>
+            <configuration>
+               <source>1.6</source>
+               <target>1.6</target>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+
+   <profiles>
+      <profile>
+         <id>release-sign-artifacts</id>
+         <activation>
+            <property>
+               <name>performRelease</name>
+               <value>true</value>
+            </property>
+         </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-gpg-plugin</artifactId>
+                  <version>${maven.gpg.version}</version>
+                  <executions>
+                     <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>sign</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-javadoc-plugin</artifactId>
+                  <version>${maven.javadoc.version}</version>
+                  <configuration>
+                     <stylesheet>maven</stylesheet>
+                     <aggregate>true</aggregate>
+                  </configuration>
+                  <executions>
+                     <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                           <goal>jar</goal>
+                        </goals>
+                     </execution>
+                     <execution>
+                        <id>aggregate</id>
+                        <goals>
+                           <goal>aggregate</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-source-plugin</artifactId>
+                  <version>${maven.source.version}</version>
+                  <executions>
+                     <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                           <goal>jar</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
+
+   <ciManagement>
+      <system>CloudBees</system>
+      <url>https://dandelion.ci.cloudbees.com/</url>
+   </ciManagement>
+
+   <issueManagement>
+      <system>GitHub</system>
+      <url>https://github.com/dandelion/dandelion-gua/issues</url>
+   </issueManagement>
+
+   <scm>
+      <connection>scm:git:git://github.com/dandelion/dandelion-gua.git</connection>
+      <developerConnection>scm:git:git@github.com:dandelion/dandelion-gua.git</developerConnection>
+      <url>http://github.com/dandelion/dandelion-gua</url>
+   </scm>
+
+   <developers>
+      <developer>
+         <id>tduchateau</id>
+         <name>Thibault Duchateau</name>
+         <email>thibault.duchateau@gmail.com</email>
+         <timezone>+1</timezone>
+         <roles>
+            <role>Lead Developer</role>
+         </roles>
+      </developer>
+      <developer>
+         <id>rlespinasse</id>
+         <name>Romain Lespinasse</name>
+         <email>romain.lespinasse@gmail.com</email>
+         <timezone>+1</timezone>
+         <roles>
+            <role>Lead Developer</role>
+         </roles>
+      </developer>
+   </developers>
+
+</project>

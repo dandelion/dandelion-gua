@@ -1,0 +1,13 @@
+.settings/
+bin/
+target/
+.idea/
+
+.project
+.classpath
+*.iml
+
+rebel.xml
+
+.DS_Store
+snapshots/
