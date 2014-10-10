@@ -1,0 +1,12 @@
+{
+    "bundle": "ddl-gua",
+    "assets": [{
+        "name": "dandelion-gua",
+        "version": "0.11.0",
+        "dom": "head",
+        "type": "js",
+        "locations": {
+            "delegate": "dandelion-gua.js"
+        }
+    }]
+}

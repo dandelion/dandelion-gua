@@ -14,5 +14,22 @@
    <name>Dandelion :: Google Universal Analytics :: Core</name>
    <description>Dandelion GUA Core module providing all APIs and standard implementations.</description>
 
+   <dependencies>
+      <dependency>
+         <groupId>com.github.dandelion</groupId>
+         <artifactId>dandelion-core</artifactId>
+         <version>0.11.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>servlet-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.springframework</groupId>
+         <artifactId>spring-test</artifactId>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
 
 </project>
