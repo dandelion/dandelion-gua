@@ -1,6 +1,6 @@
 package com.github.dandelion.gua.core.generator;
 
-import com.github.dandelion.core.asset.generator.js.AbstractJavascriptContentGenerator;
+import com.github.dandelion.core.asset.generator.js.AbstractJsContentGenerator;
 import com.github.dandelion.gua.core.*;
 import com.github.dandelion.gua.core.field.AnalyticsCreateField;
 import com.github.dandelion.gua.core.field.AnalyticsField;
@@ -12,7 +12,7 @@ import com.github.dandelion.gua.core.tracker.send.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-public class GuaJavascriptContentGenerator extends AbstractJavascriptContentGenerator {
+public class GuaJavascriptContentGenerator extends AbstractJsContentGenerator {
     private StringBuilder gua = new StringBuilder("(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');");
     private boolean needListenerFunction = false;
 
