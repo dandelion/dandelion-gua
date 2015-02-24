@@ -1,12 +1,13 @@
 package com.github.dandelion.gua.core.bundle;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
+import com.github.dandelion.core.bundle.loader.AbstractBundleLoader;
+import com.github.dandelion.core.storage.BundleStorageUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.github.dandelion.core.bundle.loader.spi.AbstractBundleLoader;
 
 /**
  * <p>
@@ -49,15 +50,12 @@ public class GoogleAnalyticsBundleLoader extends AbstractBundleLoader {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isRecursive() {
-		return true;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
 	public Set<String> getExcludedPaths() {
 		return Collections.emptySet();
 	}
+
+    @Override
+    protected void doCustomBundlePostProcessing(List<BundleStorageUnit> bundles) {
+        // Do nothing
+    }
 }

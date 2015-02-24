@@ -4,7 +4,7 @@ import java.util.*;
 
 import javax.servlet.ServletRequest;
 
-import com.github.dandelion.core.asset.locator.impl.DelegateLocator;
+import com.github.dandelion.core.asset.locator.impl.ApiLocator;
 import com.github.dandelion.core.web.AssetRequestContext;
 import com.github.dandelion.gua.core.generator.GuaJavascriptContentGenerator;
 import com.github.dandelion.gua.core.tracker.Tracker;
@@ -22,7 +22,7 @@ public class GoogleAnalytics {
 			AssetRequestContext
                     .get(servletRequest)
                     .addBundle("google-analytics")
-                    .addParameter("dandelion-gua", DelegateLocator.DELEGATED_CONTENT_PARAM, guaGenerator, true);
+                    .addParameter("dandelion-gua", ApiLocator.API_CONTENT_PARAM, guaGenerator, true);
 		}
 		return GoogleAnalytics.class.cast(attribute);
 	}

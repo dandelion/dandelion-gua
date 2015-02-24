@@ -1,7 +1,11 @@
 package com.github.dandelion.gua.core;
 
 import com.github.dandelion.core.Context;
-import com.github.dandelion.core.asset.locator.impl.DelegateLocator;
+import com.github.dandelion.core.asset.Asset;
+import com.github.dandelion.core.asset.AssetDomPosition;
+import com.github.dandelion.core.asset.AssetMapper;
+import com.github.dandelion.core.asset.AssetType;
+import com.github.dandelion.core.asset.locator.impl.ApiLocator;
 import com.github.dandelion.core.storage.AssetStorageUnit;
 import com.github.dandelion.core.web.WebConstants;
 import com.github.dandelion.gua.core.field.*;
@@ -21,7 +25,7 @@ public class GoogleAnalyticsTest {
 
     private MockHttpServletRequest request;
     private Context context;
-    private DelegateLocator locator = new DelegateLocator();
+    private ApiLocator locator = new ApiLocator();
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -32,7 +36,7 @@ public class GoogleAnalyticsTest {
         request.setContextPath("/context");
         request.setRequestURI("/context/page.html");
         context = new Context(new MockFilterConfig());
-        context.getConfiguration().setToolAssetPrettyPrintingEnabled(true);
+        // TODO new version of "context.getConfiguration().setToolAssetPrettyPrintingEnabled(true);"
         request.setAttribute(WebConstants.DANDELION_CONTEXT_ATTRIBUTE, context);
     }
 
@@ -129,8 +133,10 @@ public class GoogleAnalyticsTest {
         AssetStorageUnit asset = new AssetStorageUnit();
         asset.setName("dandelion-gua");
         asset.setVersion("latest");
+        asset.setType(AssetType.js);
+        asset.setDom(AssetDomPosition.head);
         asset.setLocations(singletonMap(locator.getLocationKey(), "dandelion-gua.js"));
-        String content = locator.getContent(asset, request);
+        String content = locator.getContent(new AssetMapper(context, request).mapToAsset(asset), request);
         assertThat(content).contains("ga('create', 'UA-XXXX-Y', 'auto');",
                 "ga('name-Z.send', 'screenview', {\n    'screenName': 'ScreenName'\n});");
     }

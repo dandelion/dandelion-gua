@@ -6,7 +6,7 @@
         "dom": "head",
         "type": "js",
         "locations": {
-            "delegate": "dandelion-gua.js"
+            "api": "dandelion-gua.js"
         }
     }]
 }
