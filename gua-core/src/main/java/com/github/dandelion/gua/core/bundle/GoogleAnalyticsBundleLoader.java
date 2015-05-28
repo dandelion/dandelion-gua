@@ -1,61 +1,42 @@
 package com.github.dandelion.gua.core.bundle;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-
-import com.github.dandelion.core.bundle.loader.AbstractBundleLoader;
-import com.github.dandelion.core.storage.BundleStorageUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.github.dandelion.core.Context;
+import com.github.dandelion.core.bundle.loader.AbstractBundleLoader;
+
 /**
  * <p>
- * Bundle loader used to load user-defined bundles inside the
- * {@code dandelion/gua} folder (and all subfolders) of the classpath.
- *
+ * Bundle loader in charge of loading bundles of the gua component.
+ * </p>
  *
  * @author Romain Lespinasse
  * @since 0.11.0
  */
 public class GoogleAnalyticsBundleLoader extends AbstractBundleLoader {
 
-	private static final Logger LOG = LoggerFactory.getLogger(GoogleAnalyticsBundleLoader.class);
+   private static final Logger LOG = LoggerFactory.getLogger(GoogleAnalyticsBundleLoader.class);
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected Logger getLogger() {
-		return LOG;
-	}
+   public static final String LOADER_NAME = "dandelion-gua";
+   public static final String SCANNING_PATH = "dandelion/gua";
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getName() {
-		return "dandelion-gua";
-	}
+   public GoogleAnalyticsBundleLoader(Context context, boolean usedStandalone) {
+      super(context, usedStandalone);
+   }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getPath() {
-		return "dandelion/gua";
-	}
+   @Override
+   public String getName() {
+      return LOADER_NAME;
+   }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Set<String> getExcludedPaths() {
-		return Collections.emptySet();
-	}
+   @Override
+   public String getScanningPath() {
+      return SCANNING_PATH;
+   }
 
-    @Override
-    protected void doCustomBundlePostProcessing(List<BundleStorageUnit> bundles) {
-        // Do nothing
-    }
+   @Override
+   protected Logger getLogger() {
+      return LOG;
+   }
 }
